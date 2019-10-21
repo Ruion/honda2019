@@ -18,8 +18,8 @@ public class DataManager : MonoBehaviour {
     /// <summary>
     /// //////////////////////////////// remember change back URL
     /// </summary>
-   // private const string databaseURL = "http://190905-my-honda.unicom-interactive-digital.com/submit-data.php";
-    private const string databaseURL = "http://localhost/honda/honda/submit-data.php";
+    private const string databaseURL = "http://190905-my-honda.unicom-interactive-digital.com/submit-data.php";
+   // private const string databaseURL = "http://localhost/honda/honda/submit-data.php";
 
     public Text sentText;
     private int totalSent;
