@@ -96,7 +96,9 @@ public class Registration : MonoBehaviour
 
     public bool CheckUserExists()
     {
-        return ToggleWarnings();
+        userIsUnique = ToggleWarnings();
+
+        return userIsUnique;
     }
 
     private bool ToggleWarnings()
@@ -106,7 +108,7 @@ public class Registration : MonoBehaviour
         bool emailIsUnique = ToggleEmailWarning();
         bool phoneIsUnique = TogglePhoneWarning();
 
-        if(!emailIsUnique || !phoneIsUnique)
+        if(emailIsUnique || phoneIsUnique)
         {
             isUnique = false;
         }

@@ -253,9 +253,10 @@ public class DataManager : MonoBehaviour {
                     }
                     else
                     {
+                        LoadingHandler.SetActive(false);
                         canSync = true;
                         ErrorHandler.SetActive(true);
-                        StartCoroutine(ReEnableSubmitButton());
+                        StartCoroutine(ReEnableSubmitButton());                        
                         yield break;
                     }
                 }

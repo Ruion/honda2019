@@ -21,6 +21,14 @@ public class TimeManager : MonoBehaviour {
         UpdateText();
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            second = 1;
+        }
+    }
+
     public void StartGame()
     {
         StartCoroutine(StartCountdown());
