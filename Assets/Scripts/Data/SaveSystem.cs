@@ -15,23 +15,23 @@ public class SaveSystem : MonoBehaviour
 
     void Start()
     {
-        TextPath = Application.persistentDataPath + "/LocalData.txt";
-        TextPath2 = Application.persistentDataPath + "/LocalDataPermanent.txt";
-        syncPath = Application.persistentDataPath + "/SyncedData.txt";
-        //if the file does not exist then create a new one
-        if (!File.Exists(TextPath))
-        {
-            File.WriteAllText(TextPath, "");
-        }
-        if (!File.Exists(TextPath2))
-        {
-            File.WriteAllText(TextPath2, "");
-        }
+            TextPath = Application.persistentDataPath + "/LocalData.txt";
+            TextPath2 = Application.persistentDataPath + "/LocalDataPermanent.txt";
+            syncPath = Application.persistentDataPath + "/SyncedData.txt";
+            //if the file does not exist then create a new one
+            if (!File.Exists(TextPath))
+            {
+                File.WriteAllText(TextPath, "");
+            }
+            if (!File.Exists(TextPath2))
+            {
+                File.WriteAllText(TextPath2, "");
+            }
 
-        if (!File.Exists(syncPath))
-        {
-            File.WriteAllText(syncPath, "");
-        }
+            if (!File.Exists(syncPath))
+            {
+                File.WriteAllText(syncPath, "");
+            }
     }
 
     private void SetFilePath()
@@ -43,18 +43,23 @@ public class SaveSystem : MonoBehaviour
 
     public void SavePlayer()
     {
+        var watch = System.Diagnostics.Stopwatch.StartNew();
 
-        string datetime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); //to get the datetime format in string correct
-                                                                        //define the text to write inside txt file
-        string serializedData = "Data," + userCard.tempUser.name + "," + userCard.tempUser.email + "," + userCard.tempUser.phone + "," + userCard.tempUser.score + "," + datetime + "," + userCard.tempUser.is_sync + "\n";
-        //string serializedData = "Data," + Name_t.text + "," + Phone_t.text + "," + Email_t.text + "," + sharenew_text + "," + above18_text + "," + happyrecieve_text + "," + pdpa_text + "\n";
-        StreamWriter writer = new StreamWriter(TextPath, true); //open txt file (doesnt actually open it inside the game)
-        StreamWriter writer2 = new StreamWriter(TextPath2, true); //save data in another file for permanent local data that is not going to be delete after send data to database
-        writer.Write(serializedData); //write into txt file the string declared above
-        writer2.Write(serializedData);
-        writer.Close(); //close the txt file again
-        writer2.Close();
+            string datetime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); //to get the datetime format in string correct
+                                                                                   //define the text to write inside txt file
+            string serializedData = "Data," + userCard.tempUser.name + "," + userCard.tempUser.email + "," + userCard.tempUser.phone + "," + userCard.tempUser.score + "," + datetime + "," + userCard.tempUser.is_sync + "\n";
+            //string serializedData = "Data," + Name_t.text + "," + Phone_t.text + "," + Email_t.text + "," + sharenew_text + "," + above18_text + "," + happyrecieve_text + "," + pdpa_text + "\n";
+            StreamWriter writer = new StreamWriter(TextPath, true); //open txt file (doesnt actually open it inside the game)
+            StreamWriter writer2 = new StreamWriter(TextPath2, true); //save data in another file for permanent local data that is not going to be delete after send data to database
+            writer.Write(serializedData); //write into txt file the string declared above
+            writer2.Write(serializedData);
+            writer.Close(); //close the txt file again
+            writer2.Close();
 
+        // the code that you want to measure comes here
+        watch.Stop();
+        var elapsedMs = watch.ElapsedMilliseconds;
+        Debug.LogError(elapsedMs.ToString() + "ms");
 
     }
 
